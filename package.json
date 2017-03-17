@@ -1,0 +1,26 @@
+{
+  "name": "dbapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "sequelize-cli": "^2.6.0",
+    "sqlite3": "^3.1.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kishila/DataBaseAndAPIServer_WithNodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kishila/DataBaseAndAPIServer_WithNodejs/issues"
+  },
+  "homepage": "https://github.com/kishila/DataBaseAndAPIServer_WithNodejs#readme"
+}
