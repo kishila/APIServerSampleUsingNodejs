@@ -15,16 +15,32 @@ var port = process.env.PORT || 3000;
 var router = express.Router();
 var db;
 
+// フロントページ
 app.get('/', function (req, res){
   res.render('index', {title: 'Express Sample Page'});
 });
 
+// データ閲覧
+app.get('/show', function (req, res){
+  db = new sqlite3.Database('127.0.0.1');
+  var users = {};
+  db.serialize(function() {
+    db.all('SELECT id,name FROM USER', function(err, rows) {
+        res.render('show', {users: rows});
+    });
+  });
+
+  //res.render('show', {title: 'Express Sample Page'});
+});
+
 // データ追加
 app.post('/create', function(req, res) {
+  /*
   console.log("post to create");
   console.log(req.body);
   console.log(req.body.name);
   console.log("===============");
+  */
   db = new sqlite3.Database('127.0.0.1');
   db.serialize(function() {
     db.run('insert or ignore into user (id, name) values ($i, $n)',
