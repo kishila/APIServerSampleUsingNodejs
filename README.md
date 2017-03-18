@@ -1,5 +1,4 @@
 # APIServerSampleUsingNodejs
-==
 
 ## Environment
 
