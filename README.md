@@ -12,6 +12,6 @@
 
 ```bash
 $ npm install
-$ sequelize db:migrate
+$ npm run sequelize db:migrate
 $ node app.js
 ```
