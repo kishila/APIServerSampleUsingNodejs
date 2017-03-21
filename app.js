@@ -29,18 +29,15 @@ app.get('/show', function (req, res){
         res.render('show', {users: rows});
     });
   });
+});
 
-  //res.render('show', {title: 'Express Sample Page'});
+// データ追加ページ
+app.get('/new', function(req, res) {
+  res.render('new');
 });
 
 // データ追加
 app.post('/create', function(req, res) {
-  /*
-  console.log("post to create");
-  console.log(req.body);
-  console.log(req.body.name);
-  console.log("===============");
-  */
   db = new sqlite3.Database('127.0.0.1');
   db.serialize(function() {
     db.run('insert or ignore into user (id, name) values ($i, $n)',
@@ -51,7 +48,8 @@ app.post('/create', function(req, res) {
     );
   });
   db.close();
-})
+  res.redirect('/show');
+});
 
 // Web API
 app.get('/api', function(req, res) {
@@ -64,4 +62,5 @@ app.get('/api', function(req, res) {
   db.close();
 });
 app.listen(port);
-console.log("起動");
+
+console.log("起動:" + port);
