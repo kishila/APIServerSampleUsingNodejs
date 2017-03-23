@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    meta(charaset='utf-8')
+    title=showページ
+  body
+    h1 Show User Table
+    
+    h2 Now Data
+    h3 #{user.id}:#{user.name}:#{user.age}
+
+    h2 New Data
+    form(action='/users/update', method="POST")
+      label NAME:
+      input(type="text", name="name" value="#{user.name}")
+      label AGE:
+      input(type="text", name="age" value="#{user.age}")
+      input(type="submit", value="送信")

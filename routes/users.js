@@ -1,37 +1,52 @@
 var express = require('express');
 var router = express.Router();
-var sqlite3    = require('sqlite3');
+var sqlite3 = require('sqlite3');
 
 var db;
 
 // データ閲覧
-router.get('/show', function (req, res){
+router.get('/index', function (req, res){
   db = new sqlite3.Database('127.0.0.1');
   db.serialize(function() {
     db.all('SELECT id,name FROM USER', function(err, rows) {
-        res.render('show', {users: rows});
+        res.render('index_user', {users: rows});
     });
   });
 });
 
 // データ追加ページ
 router.get('/new', function(req, res) {
-  res.render('new');
+  res.render('new_user');
 });
 
 // データ追加
 router.post('/create', function(req, res) {
   db = new sqlite3.Database('127.0.0.1');
   db.serialize(function() {
-    db.run('insert or ignore into user (id, name) values ($i, $n)',
+    db.run('insert or ignore into user (name, age) values ($n, $a)',
       {
-        $i: req.body.id,
-        $n: req.body.name
+        $n: req.body.name,
+        $a: req.body.age
       }
     );
   });
   db.close();
-  res.redirect('show');
+  res.redirect('index');
+});
+
+// 編集ページ
+router.get('/edit/:id', function(req, res) {
+  db = new sqlite3.Database('127.0.0.1');
+  db.serialize(function() {
+    db.each('select * from user where id = $i',
+      {
+        $i: req.params.id
+      },
+      function(err, rows) {
+        res.render('edit_user', {user: rows});
+      }
+    );
+  });
 });
 
 // データ削除
@@ -48,7 +63,7 @@ router.delete('/destroy', function(req, res) {
     */
   });
   db.close();
-  res.redirect('/show');
+  res.redirect('/index_user');
 });
 
 // Web API

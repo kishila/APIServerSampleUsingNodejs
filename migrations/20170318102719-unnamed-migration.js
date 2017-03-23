@@ -12,6 +12,9 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING
+      },
+      age: {
+        type: Sequelize.INTEGER
       }
     });
   },

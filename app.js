@@ -13,7 +13,7 @@ app.use('/users', usersRoutes);
 
 // View Engine
 app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/views/user');
 
 var port = process.env.PORT || 3000;
 var router = express.Router();
