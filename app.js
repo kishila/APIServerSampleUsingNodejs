@@ -14,9 +14,9 @@ app.use('/users', usersRoutes);
 // View Engine
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views/user');
+app.set('views', __dirname + '/views');
 
 var port = process.env.PORT || 3000;
-var router = express.Router();
 
 // フロントページ
 app.get('/', function (req, res){
